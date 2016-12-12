@@ -1,4 +1,4 @@
-%{"alarm_clock": {:hex, :alarm_clock, "0.0.1", "7220f4c4cadebe5067b10a6b07ce469a091624fad0a42370c55049e01cf75d71", [:mix], [{:calendar, "~> 0.16.1", [hex: :calendar, optional: false]}]},
+%{"alarm_clock": {:hex, :alarm_clock, "0.0.2", "d1b6e52f89ed5893572ff540e0cbf0e63df2864f64290b50d94f5fac2143f141", [:mix], [{:calendar, "~> 0.14", [hex: :calendar, optional: false]}]},
   "calecto": {:hex, :calecto, "0.16.1", "c9159a46fd751a81e5ef0a1fc9bad46b6b48716650328e7bb763349d22bdf7f2", [:mix], [{:calendar, "~> 0.16.0", [hex: :calendar, optional: false]}, {:ecto, "~> 1.1.3 or ~> 2.0.0 or ~> 2.0.0-rc5 or ~> 2.1.0-rc.1", [hex: :ecto, optional: false]}]},
   "calendar": {:hex, :calendar, "0.16.1", "782327ad8bae7c797b887840dc4ddb933f05ce6e333e5b04964d7a5d5f79bde3", [:mix], [{:tzdata, "~> 0.5.8 or ~> 0.1.201603", [hex: :tzdata, optional: false]}]},
   "certifi": {:hex, :certifi, "0.7.0", "861a57f3808f7eb0c2d1802afeaae0fa5de813b0df0979153cbafcd853ababaf", [:rebar3], []},

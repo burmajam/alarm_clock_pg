@@ -19,7 +19,7 @@ defmodule AlarmClock.PG.Mixfile do
       {:ecto, "~> 1.1.3 or ~> 2.0.0"},
       {:calecto, "~> 0.6"},
       {:postgrex, ">= 0.0.0"},
-      {:alarm_clock, path: "~/elixir/alarm_clock"},
+      {:alarm_clock, "~> 0.0.2"},
 
       {:earmark, "~> 0.2.1", only: :dev},
       {:ex_doc, "~> 0.11.3", only: :dev}

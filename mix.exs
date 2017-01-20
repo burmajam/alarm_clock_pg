@@ -3,13 +3,13 @@ defmodule AlarmClock.PG.Mixfile do
 
   def project do
     [app: :alarm_clock_pg,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.3",
-     package: package,
-     description: description,
+     package: package(),
+     description: description(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
@@ -21,7 +21,7 @@ defmodule AlarmClock.PG.Mixfile do
       {:ecto, "~> 1.1.3 or ~> 2.0.0"},
       {:calecto, "~> 0.6"},
       {:postgrex, ">= 0.0.0"},
-      {:alarm_clock, "~> 0.0.2"},
+      {:alarm_clock, "~> 0.1.0"},
 
       {:earmark, "~> 0.2.1", only: :dev},
       {:ex_doc, "~> 0.11.3", only: :dev}

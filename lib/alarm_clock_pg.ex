@@ -30,23 +30,31 @@ defmodule AlarmClock.PG do
     {:reply, result, repo}
   end
 
-  def handle_call({:save_alarm, {:alarm, call_type, target_pid, msg, opts, attempt}=alarm}, _from, repo) do
+  def handle_call({:save_alarm, alarm}, _from, repo) do
     alarm_id = :crypto.hash(:sha256, inspect(alarm)) |> :base64.encode
-    {alarm, at} = if Keyword.get(opts, :at) do
-      {alarm |> :erlang.term_to_binary |> :base64.encode, Keyword.get(opts, :at)}
-    else
-      in_ms = Keyword.fetch! opts, :in
-      at = AlarmClock.Persister.calculate_time(in_ms)
-      opts  = opts ++ [at: at]
-      alarm = {:alarm, call_type, target_pid, msg, opts, attempt} |> :erlang.term_to_binary |> :base64.encode
-      {alarm, at}
-    end 
-    repo.insert! %Model{id: alarm_id, alarm: alarm, run_at: at}
+    :ok = case repo.get Model, alarm_id do
+      nil -> insert_alarm alarm, alarm_id, repo
+      _   -> :ok
+    end
     {:reply, {:ok, alarm_id}, repo}
   end
 
   def handle_call({:delete_alarm, alarm_id}, _from, repo) do
     repo.get!(Model, alarm_id) |> repo.delete!
     {:reply, :ok, repo}
+  end
+
+  defp insert_alarm({:alarm, call_type, target_pid, msg, opts, attempt}=alarm, alarm_id, repo) do
+    {alarm, at} = if Keyword.get(opts, :at) do
+      {alarm |> :erlang.term_to_binary |> :base64.encode, Keyword.get(opts, :at)}
+    else
+      in_ms = Keyword.fetch! opts, :in
+      at    = AlarmClock.Persister.calculate_time(in_ms)
+      opts  = opts ++ [at: at]
+      alarm = {:alarm, call_type, target_pid, msg, opts, attempt} |> :erlang.term_to_binary |> :base64.encode
+      {alarm, at}
+    end 
+    repo.insert! %Model{id: alarm_id, alarm: alarm, run_at: at}
+    :ok
   end
 end

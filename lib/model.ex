@@ -6,6 +6,6 @@ defmodule AlarmClock.PG.Model do
     field :alarm
     field :run_at, Calecto.DateTime
 
-    timestamps
+    timestamps()
   end
 end

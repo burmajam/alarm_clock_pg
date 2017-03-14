@@ -40,7 +40,10 @@ defmodule AlarmClock.PG do
   end
 
   def handle_call({:delete_alarm, alarm_id}, _from, repo) do
-    repo.get!(Model, alarm_id) |> repo.delete!
+    case repo.get(Model, alarm_id) do
+      nil   -> :ok
+      model -> repo.delete! model
+    end
     {:reply, :ok, repo}
   end
 

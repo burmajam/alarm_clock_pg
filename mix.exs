@@ -3,7 +3,7 @@ defmodule AlarmClock.PG.Mixfile do
 
   def project do
     [app: :alarm_clock_pg,
-     version: "0.0.5",
+     version: "0.1.1",
      elixir: "~> 1.3",
      package: package(),
      description: description(),
@@ -13,15 +13,14 @@ defmodule AlarmClock.PG.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :ecto, :alarm_clock, :postgrex, :calecto]]
+    [applications: [:logger, :ecto, :alarm_clock, :postgrex]]
   end
 
   defp deps do
     [
-      {:ecto, "~> 1.1.3 or ~> 2.1"},
-      {:calecto, "~> 0.6"},
+      {:ecto, "~> 2.1"},
       {:postgrex, ">= 0.0.0"},
-      {:alarm_clock, "~> 0.1.0"},
+      {:alarm_clock, "~> 0.1.1"},
 
       {:ex_doc, ">= 0.11.4", only: [:dev]},
       {:earmark, ">= 0.0.0", only: [:dev]},
